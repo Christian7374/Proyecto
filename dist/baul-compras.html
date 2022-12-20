@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/assets/css/bootstrap.min.css">
+    <link rel="preload" href="../src/assets/css/normalize.css" as="style">
+    <link rel="stylesheet" href="../src/assets/css/normalize.css">
+    <link rel="preload" href="../src/assets/css/gencomps.css" as="style">
+    <link rel="stylesheet" type="text/css" href="../src/assets/css/gencomps.css">
+    <link rel="preload" href="../src/assets/css/baul.css" as="style">
+    <link rel="stylesheet" type="text/css" href="../src/assets/css/baul.css">
+    <link href="../src/assets/css/ihover.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Adamina&family=Alegreya+Sans:ital,wght@1,100;1,400&family=IM+Fell+English+SC&family=Open+Sans:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <title>Baúl de compras</title>
+</head>
+
+<body>
+    <audio preload="auto" autoplay>
+        <source src="../src/assets/audio/Prologue.mp3" id="cancion1" />
+        <source src="../src/assets/audio/Fireworks.mp3" id="cancion2" />
+        <source src="../src/assets/audio/Quidditch.mp3" id="cancion3" />
+        <source src="../src/assets/audio/Requirements.mp3" id="cancion4" />
+        <source src="../src/assets/audio/Wondrous World.mp3" id="cancion5" />
+    </audio>
+    <div class="btn-group reproductor" role="group">
+        <button type="button" class="btn btn-outline-dark music" id="play">
+            <label class="bi-pause-fill"></label>
+        </button>
+        <button type="button" class="btn btn-outline-dark music" id="vol-btn">
+            <label class="bi-volume-up-fill"></label>
+        </button>
+        <button type="button" class="btn btn-outline-dark music vol-range">
+            <input type="range" class="slider" id="volumen" value="0.8" min="0" max="1" step="0.1" />
+        </button>
+        <button type="button" class="btn btn-outline-dark music" id="siguiente">
+            <label class="bi-skip-end-fill"></label>
+        </button>
+        <button type="button" class="btn btn-outline-dark music" id="encapsulador">
+            <label class="bi-music-note-list"></label>
+        </button>
+    </div>
+    <!-- El seguiente bloque de codigo controla las particulas en movimiento por conveniencia es mejor que quede al inicio del body -->
+    <!--  <div id="particles-js">
+        <img id="fondo" src="./src/assets/img/hogwarts-fondo.png" />
+    </div> -->
+    <div id="particles-js">
+        <img id="fondo" src="../src/assets/img/hogwarts-fondo.png" />
+    </div>
+
+    <!-- Este bloque de codigo despliega el header dejar aqui -->
+    <div id="header">
+        <div class="ubicacion__logo">
+            <img src="../src/assets/img/logo.png" id="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg" id="encabezado">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <svg id="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true" role="img" width="3em" height="3em" preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 24 24">
+                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" fill="white" />
+                </svg>
+            </button>
+
+            <div class="ubicacion__logo">
+                <img src="../src/assets/img/logo.png" id="logo2" />
+            </div>
+
+            <!-- <a class="navbar-brand order-lg-12 p-0 me-2" href="baul-compras.html">
+                <svg class="d-block my-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true" role="img" width="3em" height="3em" preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="M5 4h14a3 3 0 0 1 3 3v4h-7v-1H9v1H2V7a3 3 0 0 1 3-3m6 7h2v2h-2v-2m-9 1h7v1l2 2h2l2-2v-1h7v8H2v-8z"
+                        fill="white" />
+                </svg>
+            </a> -->
+
+            <div class="collapse navbar-collapse nav-item" id="navbarTogglerDemo01">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="inicio.html">Inicio<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="usuario.html">Mi Perfil <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Salas
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item griffindor" href="../dist/casas_base.html?casa=1">Gryffindor</a>
+                            <a class="dropdown-item hufflepuff" href="../dist/casas_base.html?casa=3">Hufflepuff</a>
+                            <a class="dropdown-item slytherin" href="../dist/casas_base.html?casa=2">Slytherin</a>
+                            <a class="dropdown-item ravenclaw" href="../dist/casas_base.html?casa=4">Ravenclaw</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="delivery.html">Delivery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="eventos.html">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="acerca-de-nosotros.html">Acerca de Nosotros</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Inserte los elementos que compondran su página dentro de este div -->
+    <main class="contenedor__baul">
+        <section class="baul__compras">
+            <section class="mask baul__compras--detalle fondo__div">
+                <h3 class="detalle__titulo"> Detalle de compras</h3>
+                <p class="detalle__descripcion">Da click sobre tus productos para ver la información</p>
+                <div class="detalle__encabezados">
+                    <p class="col-5">Artículos</p>
+                    <p class="col-4">Precio</p>
+                    <p class="col-3">Cantidad</p>
+                </div>
+
+                <div class="detalle__producto">
+                    <div class="detalle__producto--informacion col-6 col-lg-4 col-sm-6 col-xs-6">
+                        <!-- From left and right-->
+                        <div class="ih-item square effect6 from_left_and_right d.flex justify-content-center "><a
+                                href="#">
+                                <div class="img"><img src="../src/assets/img/mandragora_baul.jpg" alt="Mandrágora"
+                                        width="100"></div>
+                                <div class="info">
+                                    <h3>Mandrágora joven</h3>
+                                    <p>Departamento:
+                                        Herbología</p>
+                                </div>
+                            </a></div>
+                    </div>
+                    <span class="detalle__producto--seccion">
+                        <span class="detalle__producto--precio col-4 align-items-center">
+                            <p class="my-5">$49.99</p>
+                        </span>
+
+                        <div class="detalle__producto--contador col-3 col-sm-12 justify-content-center">
+                            <div class="number contador align-items-center">
+                                <span class="minus">-</span>
+                                <input class="mx-1" type="text" value="1" />
+                                <span class="plus">+</span>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <!--   <div class="detalle__producto">
+                    <div class="detalle__producto--informacion col-6 col-lg-4 col-sm-6 col-xs-6">
+                         From left and right-->
+                <!-- 
+                        <div class="ih-item square effect6 from_left_and_right d.flex justify-content-center "><a
+                                href="#">
+                                <div class="img"><img src="../src/assets/img/mandragora_baul.jpg" alt="Mandrágora"
+                                        width="100"></div>
+                                <div class="info">
+                                    <h3>Mandrágora joven</h3>
+                                    <p>Departamento:
+                                        Herbología</p>
+                                </div>
+                            </a></div>
+                    </div> -->
+                <!-- 
+                    <span class="detalle__producto--seccion">
+                        <span class="detalle__producto--precio col-4 align-items-center">
+                            <p class="my-5">45.90</p>
+                        </span>
+
+                        <div class="detalle__producto--contador col-3 col-sm-12 justify-content-center">
+                            <div class="number contador align-items-center">
+                                <span class="minus">-</span>
+                                <input class="mx-1" type="text" value="1" />
+                                <span class="plus">+</span>
+                            </div>
+                        </div>
+                    </span>
+                </div> -->
+            </section>
+
+            <section class="compras__resumen mask fondo__div">
+                <span class="detalle__titulo detalle__encabezados"> Resumen </span>
+                <div class="resumen__producto row">
+                    <span class="col-2"> 1 </span>
+                    <span class="col-7">Mandrágora</span>
+                    <span class="col-3 justify-content-end">$49.99</span>
+                </div>
+
+                <span class="resumen__compra--total col justify-content-end">
+                    <p> Total: $49.99</p>
+                </span>
+
+                <button type="button" class="btn resumen__boton--comprar my-3">Comprar</button>
+
+
+            </section>
+        </section>
+        <!-- Carrusel -->
+
+
+
+        <section class="container text-center my-5 carrusel mask fondo__div">
+            <h2
+                class="detalle__titulo detalle__encabezados mb-5 justify-content-start mx-5 animate__animated animate__infinite animate__pulse">
+                Te puede interesar: </h2>
+            <div id="recipeCarousel" class="carousel slide w-100 d-flex justify-content-center" data-ride="carousel">
+                <div class="carousel-inner w-100 mx-3  " role="listbox">
+                  
+                    <div class="carousel-item active">
+                        <div class="producto col-lg-3">
+                            <div class="producto__parte-1">
+                                <img class="producto__parte-1--img" src="../src/assets/img/nimbus200.png">
+                                <span class="producto__parte-1--descuento">15% DE DESCUENTO</span>
+                                <ul class="producto__parte-1--ul">
+                                    <!-- <li><a href="#" class="chest"></a></li> -->
+                                </ul>
+                            </div>
+                            <div class="producto__parte-2">
+                                <h3 class="producto__parte-2--titulo">Nimbus 2000</h3>
+                                <h4 class="producto__parte-2--precio">$49.99</h4></br>
+                                <span class="btn producto__parte-2--boton">
+                                    <a href="#">Agregar al baúl</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="producto col-lg-3">
+                            <div class="producto__parte-1">
+                                <img class="producto__parte-1--img" src="../src/assets/img/quidditch_ticket.png">
+                                <!-- <span class="producto__parte-1--descuento"></span> -->
+                                <ul class="producto__parte-1--ul">
+                                    <li><a href="#" class="chest"></a></li> 
+                                </ul>
+                            </div>
+                            <div class="producto__parte-2">
+                                <h3 class="producto__parte-2--titulo">Partido Quidditch</h3>
+                                <h4 class="producto__parte-2--precio">$49.99</h4></br>
+                                <span class="btn producto__parte-2--boton">
+                                    <a href="#">Agregar al baúl</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="producto col-lg-3">
+                            <div class="producto__parte-1">
+                                <img class="producto__parte-1--img" src="../src/assets/img/libro.png">
+                                <span class="producto__parte-1--nuevo">Nuevo</span>`
+                                <ul class="producto__parte-1--ul">
+                                    <li><a href="#" class="chest"></a></li>
+                                </ul>
+                            </div>
+                            <div class="producto__parte-2">
+                                <h3 class="producto__parte-2--titulo">Hierbas mágicas y hongos </h3>
+                                <h4 class="producto__parte-2--precio">$49.99</h4></br>
+                                <span class="btn producto__parte-2--boton">
+                                    <a href="#">Agregar al baúl</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="carousel-item">
+                        <div class="producto col-lg-3">
+                            <div class="producto__parte-1">
+                                <img class="producto__parte-1--img" src="../src/assets/img/mandragora_baul.png">
+                                <ul class="producto__parte-1--ul">
+                                    <li><a href="#" class="chest"></a></li>
+                                </ul>
+                            </div>
+                            <div class="producto__parte-2">
+                                <h3 class="producto__parte-2--titulo">Mandrágora</h3>
+                                <h4 class="producto__parte-2--precio">$49.99</h4></br>
+                                <span class="btn producto__parte-2--boton">
+                                    <a href="#">Agregar al baúl</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  <div class="carousel-item">
+                        <div class="col-lg-3">
+                            <div class="card card-body">
+                                <img class="img-fluid" src="../src/assets/img/libro.png" width="200px" height="170px">
+                                <p class="cardText">Mil hierbas mágicas y hongos </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="col-lg-3">
+                            <div class="card card-body">
+                                <img class="img-fluid" src="../src/assets/img/quidditch_ticket.png" width="200px"
+                                    height="170px">
+                                <p class="cardText"> Boletos Quiditch</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="col-lg-3">
+                            <div class="card card-body">
+                                <img class="img-fluid" src="../src/assets/img/plumaescribir.png" width="200px"
+                                    height="170px">
+                                <p class="cardText"> Plumas</p>>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-lg-3">
+                            <div class="card card-body">
+                                <img class="img-fluid" src="../src/assets/img/varita.png" width="200px" height="170px">
+                                <p class="cardText"> Varita de cedro</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-lg-3">
+                            <div class="card card-body">
+                                <img class="img-fluid" src="../src/assets/img/caldero.png" width="200px" height="170px">
+                                <p class="cardText"> Caldero mediano</p>
+                            </div>
+                        </div>
+                    </div>   -->
+                </div>
+                <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"
+                        aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle"
+                        aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+    <!-- Este bloque de codigo controla el footer dejar aqui -->
+    <footer class="footer">
+        <h2 class="footer__titulo mt-3  ml-5 pt-4">Callejón Diagonal® 2021</h2>
+        <div class="row mt-4 justify-content-center align-items-center">
+            <div class="row col-lg-9 col-md-6 col-sm-6 col-6">
+                <div class=" col-lg-6 col-md-12 col-sm-12">
+                    <ul class="footer__menu_1">
+                        <li class="nav-item footer__item">
+                            <a class="nav-link nav-enlace" href="inicio.html">Inicio</a>
+                        </li>
+                        <li class="nav-item footer__item">
+                            <a class="nav-link nav-enlace" href="contacto.html">Contacto</a>
+                        </li>
+                        <li class="nav-item footer__item ">
+                            <a class="nav-link nav-enlace" href="acerca-de-nosotros.html">Acerca de Nosotros</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="linea"></div>
+                <div class=" col-lg-3 col-md-12 col-sm-12">
+                    <ul class="footer__menu_2">
+                        <li class="nav-item footer__item ">
+                            <a class="nav-link nav-enlace" href="productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item footer__item">
+                            <a class="nav-link nav-enlace"
+                                href="https://github.com/DenisseGonz/Proyecto-Integrador-Equipo-3">GitHub</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class=" col-lg-3  col-md-6 col-sm-6 col-6">
+                <div class="footer__imagen">
+                    <img src="../src/assets/img/Hogwartscrest.png" alt="hogwarts">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Se importa la librería de las partículas primero antes del script de configuración -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../src/assets/js/cargador-particulas.js"></script>
+
+    <!-- Comportamientos de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../src/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../src/assets/js/bootstrap.min.js"></script>
+    <script type="module" src="../bundle.js"></script>
+    <script src="../src/assets/js/contador.js"></script>
+    <script src="../src/assets/js/carrusel_baul.js"></script>
+</body>
+
+</html>
